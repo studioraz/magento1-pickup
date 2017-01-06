@@ -10,6 +10,11 @@
             <sr_upsship>
                 <class>SR_UpsShip_Block</class>
             </sr_upsship>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_grid>SR_UpsShip_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <models>
             <sr_upsship>
@@ -70,6 +75,17 @@
             </checkout_controller_onepage_save_shipping_method>
         </events>
     </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <SR_UpsShip before="Mage_Adminhtml">SR_UpsShip_Adminhtml</SR_UpsShip>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <default>
         <carriers>
             <upsship>
