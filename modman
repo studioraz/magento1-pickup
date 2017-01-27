@@ -8,6 +8,8 @@ app/design/frontend/base/default/template/sr/upsship/*      app/design/frontend/
 
 js/sr/upsship/*                                             js/sr/upsship
 
+skin/frontend/base/default/css/upsship.css                  skin/frontend/base/default/css/upsship.css
+
 app/etc/modules/SR_UpsShip.xml                              app/etc/modules/SR_UpsShip.xml
 
 
