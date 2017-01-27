@@ -1,0 +1,15 @@
+app/code/local/SR/UpsShip                                   app/code/local/SR/UpsShip
+
+app/design/adminhtml/default/default/layout/sr/upsship.xml  app/design/adminhtml/default/default/layout/sr/upsship.xml
+app/design/adminhtml/default/default/template/sr/upsship/*  app/design/adminhtml/default/default/template/sr/upsship
+
+app/design/frontend/base/default/layout/sr/upsship.xml      app/design/frontend/base/default/layout/sr/upsship.xml
+app/design/frontend/base/default/template/sr/upsship/*      app/design/frontend/base/default/template/sr/upsship
+
+js/sr/upsship/*                                             js/sr/upsship
+
+app/etc/modules/SR_UpsShip.xml                              app/etc/modules/SR_UpsShip.xml
+
+
+app/locale/en_US/SR_UpsShip.csv                             app/locale/en_US/SR_UpsShip.csv
+app/locale/he_IL/SR_UpsShip.csv                             app/locale/he_IL/SR_UpsShip.csv
