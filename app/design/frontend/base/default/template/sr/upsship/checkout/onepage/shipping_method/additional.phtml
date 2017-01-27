@@ -1,7 +1,4 @@
-<?php if (!$this->getQuote()->isVirtual()): ?>
-    <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
-<?php endif; ?>
-<div id="ups-ship-additional" style="display: none">
+<div id="ups-ship-additional" class="ups-ship-additional" style="display: none">
     <input type="hidden" class="validate-ups-pickup" name="shipping_ups_pickup_id" id="pickup-id" />
     <input type="hidden" name="shipping_additional_information" id="shipping-additional" />
     <div onclick="window.PickupsSDK.onClick(); return;" class="ups-pickups ups-pickups-48"></div>
@@ -45,3 +42,8 @@
     });
     //]]>
 </script>
+
+<!-- design/frontend/base/default/template/checkout/onepage/shipping_method/additional.phtml -->
+<?php if (!$this->getQuote()->isVirtual()): ?>
+    <?php echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), $this->getDontDisplayContainer()) ?>
+<?php endif; ?>
