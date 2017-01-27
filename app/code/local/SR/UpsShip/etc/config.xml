@@ -55,6 +55,15 @@
                 </sr_upsship>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <Mage_Catalog>
+                    <files>
+                        <default>SR_UpsShip.csv</default>
+                    </files>
+                </Mage_Catalog>
+            </modules>
+        </translate>
     </adminhtml>
     <frontend>
         <layout>
@@ -74,6 +83,15 @@
                 </observers>
             </checkout_controller_onepage_save_shipping_method>
         </events>
+        <translate>
+            <modules>
+                <Mage_Catalog>
+                    <files>
+                        <default>SR_UpsShip.csv</default>
+                    </files>
+                </Mage_Catalog>
+            </modules>
+        </translate>
     </frontend>
     <admin>
         <routers>
