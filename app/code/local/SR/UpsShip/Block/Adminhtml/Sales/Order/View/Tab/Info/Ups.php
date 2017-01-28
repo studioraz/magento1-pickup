@@ -73,6 +73,9 @@ class SR_UpsShip_Block_Adminhtml_Sales_Order_View_Tab_Info_Ups extends Mage_Admi
     {
         try {
             $details = Zend_Json::decode($this->getOrder()->getShippingAddress()->getShippingAdditionalInformation());
+            foreach(array('lat', 'lng', 'dist') as $skip) {
+                unset($details[$skip]);
+            }
         } catch (Exception $e) {
             $details = array();
         }

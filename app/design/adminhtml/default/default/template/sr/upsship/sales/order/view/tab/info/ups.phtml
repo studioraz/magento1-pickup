@@ -2,12 +2,11 @@
 <?php if ($this->canShow()): ?>
     <div class="entry-edit">
         <div class="entry-edit-head">
-            <h4 class="icon-head head-payment-method"><?php echo Mage::helper('sales')->__('UPS Additional Data') ?></h4>
+            <h4 class="icon-head head-payment-method"><?php echo $this->__('PickUPS Location Information') ?></h4>
         </div>
         <fieldset>
-            <div><?php echo $this->__('Location ID'); ?>: <?php echo $this->getUpsLocationId(); ?></div>
             <?php foreach ($this->getUpsLocationDetails() as $detailName => $detail): ?>
-                <div><?php echo ucfirst($detailName) . ': ' . $detail; ?></div>
+                <div><?php echo $this->__($detailName) . ': ' . $detail; ?></div>
             <?php endforeach; ?>
         </fieldset>
     </div>

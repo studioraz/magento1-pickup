@@ -3,7 +3,7 @@
 <layout version="0.1.0">
     <adminhtml_sales_order_view>
         <reference name="order_tab_info">
-            <action method="setTemplate"><template>sr/sales/order/view/tab/info.phtml</template></action>
+            <action method="setTemplate"><template>sr/upsship/sales/order/view/tab/info.phtml</template></action>
             <block type="sr_upsship/adminhtml_sales_order_view_tab_info_ups"
                    name="order_tab_info_ups"
                    template="sr/upsship/sales/order/view/tab/info/ups.phtml"

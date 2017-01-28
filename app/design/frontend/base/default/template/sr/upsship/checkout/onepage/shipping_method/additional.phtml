@@ -1,8 +1,8 @@
-<div id="ups-ship-additional" class="ups-ship-additional" style="display: none">
-    <input type="hidden" class="validate-ups-pickup" name="shipping_ups_pickup_id" id="pickup-id" />
-    <input type="hidden" name="shipping_additional_information" id="shipping-additional" />
+<div id="ups-ship-additional" class="ups-ship-additional clearfix" style="display: none">
+    <input type="hidden" class="validate-ups-pickup" name="shipping_ups_pickup_id" id="pickup-id"/>
+    <input type="hidden" name="shipping_additional_information" id="shipping-additional"/>
     <div onclick="window.PickupsSDK.onClick(); return;" class="ups-pickups ups-pickups-48"></div>
-    <div class="ups-pickups-info"></div>
+    <div id="ups-pickups-info" class="ups-pickups-info-2"></div>
 </div>
 <script type="text/javascript">
     //<![CDATA[
@@ -13,13 +13,50 @@
         window.upsShipLoaded = true;
     }
 
-    jQuery('input[name=shipping_method]').on('change', function (e) {
-        if (jQuery(e.target).val() == 'upsship_pickup') {
-            jQuery('#ups-ship-additional').show();
-        } else {
-            jQuery('#ups-ship-additional').hide();
-        }
-    });
+    (function ($) {
+        window.UPSShip = {
+            code : 'upsship_pickup',
+            init : function () {
+                this.checkbox = $('#s_method_upsship_pickup');
+                this.block = $('#ups-ship-additional');
+
+                var self = this;
+
+                $('input[name=shipping_method]').on('change', $.proxy(this.shippingMethodChanged, this));
+
+                if (this.isActiveMethod()) {
+                    this.block.show();
+                }
+
+                // steal opcheckout.js function to validate
+                var save = shippingMethod.save;
+
+                shippingMethod.save = function () {
+                    if (self.isActiveMethod() && !self.isValid()) {
+                        alert('<?php echo $this->__('Please choose a pickup location');?>');
+                        return false;
+                    }
+                    return save.apply(this, arguments);
+                }
+            },
+            shippingMethodChanged : function (e) {
+                this.block[this.isActiveMethod() ? 'show' : 'hide']();
+            },
+            isActiveMethod : function() {
+                return this.checkbox.is(':checked');
+            },
+            isValid : function() {
+                return $("input[name=shipping_ups_pickup_id]").val() != '' &&
+                    $("input[name=shipping_additional_information]").val() != '';
+            }
+
+        };
+
+    })(jQuery);
+
+
+    window.UPSShip.init();
+
 
     jQuery(document.body).on('pickups-before-open', function () {
         var o = {
@@ -30,15 +67,22 @@
         };
         var json = JSON.stringify(o);
         window.PickupsSDK.setDefaults(json);
-    });
 
-    jQuery(document.body).on('pickups-after-choosen', function (e, data) {
+    }).on('pickups-after-choosen', function (e, data) {
+
         var pkps_location = e.originalEvent.detail;
+
         console.log("pickups-after-choosen catched event", pkps_location);
+
         jQuery("input[name=shipping_ups_pickup_id]").val(pkps_location.iid);
+
         jQuery("input[name=shipping_additional_information]").val(JSON.stringify(pkps_location));
-        var html = "<br /><b>" + pkps_location.title + "</b>&nbsp;(" + pkps_location.iid + ")<br />" + pkps_location.city + ", " + pkps_location.street + "<br /><small>" + pkps_location.zip + "</small>";
-        jQuery("div.ups-pickups-info").css("line-height", "1em").css("font-weight", "300").css("font-size", "0.9em").html(html);
+
+        var html = pkps_location.title + " <strong>(" + pkps_location.iid + ")</strong>" +
+            "<br />" + pkps_location.city + ", " + pkps_location.street + "" +
+            "<br />" + pkps_location.zip;
+
+        jQuery("#ups-pickups-info").html(html);
     });
     //]]>
 </script>
