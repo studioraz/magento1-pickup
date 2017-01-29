@@ -39,7 +39,7 @@ class SR_UpsShip_Model_Carrier
         $rate->setCarrier($this->_code);
         $rate->setCarrierTitle($this->getConfigData('title'));
         $rate->setMethod(self::UPS_SHIP_PICKUP_METHOD_CODE);
-        $rate->setMethodTitle('UPS Ship');
+        $rate->setMethodTitle('PickUPS Ship');
         $rate->setPrice($this->getConfigData('price'));
         $rate->setCost(0);
         $result->append($rate);
