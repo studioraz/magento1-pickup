@@ -58,4 +58,15 @@ class SR_UpsShip_Model_Carrier
             'pickup' => 'Store pickup',
         );
     }
+
+    /**
+     * Check if carrier has shipping tracking option available
+     *
+     * @return boolean
+     */
+    public function isTrackingAvailable() {
+        return true;
+    }
+
+
 }
