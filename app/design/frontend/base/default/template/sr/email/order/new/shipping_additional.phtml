@@ -1,0 +1,9 @@
+<?php /** @var $this SR_UpsShip_Block_Email_Order_New_ShippingAdditional */ ?>
+<?php if ($locationData = $this->getAdditionalInformation()): ?>
+    <td class="method-info">
+        <h6><?php echo $this->__('Pickup location address'); ?>:</h6>
+        <p><?php echo $locationData['title'] . ': ' . $locationData['city'] . ', ' . $locationData['street'] .
+                $locationData['zip']; ?></p>
+    </td>
+<?php endif; ?>
+
