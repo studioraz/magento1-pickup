@@ -4,7 +4,7 @@
         <carriers>
             <groups>
                 <upsship translate="label">
-                    <label>UPS Ship Carrier</label>
+                    <label>PickUPS Ship</label>
                     <sort_order>2</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
@@ -20,7 +20,7 @@
                             <show_in_store>0</show_in_store>
                         </active>
                         <title translate="label">
-                            <label>Carrier title</label>
+                            <label>Title</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
@@ -28,7 +28,7 @@
                             <show_in_store>0</show_in_store>
                         </title>
                         <price translate="label">
-                            <label>Default price</label>
+                            <label>Price</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>25</sort_order>
                             <show_in_default>1</show_in_default>
@@ -36,7 +36,7 @@
                             <show_in_store>0</show_in_store>
                         </price>
                         <sallowspecific translate="label">
-                            <label>Available for specific countries only</label>
+                            <label>Ship to Applicable Countries</label>
                             <frontend_type>select</frontend_type>
                             <frontend_class>shipping-applicable-country</frontend_class>
                             <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>

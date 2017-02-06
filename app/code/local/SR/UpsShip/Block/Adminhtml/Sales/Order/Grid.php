@@ -19,7 +19,7 @@ class SR_UpsShip_Block_Adminhtml_Sales_Order_Grid extends Mage_Adminhtml_Block_S
     {
         parent::_prepareMassaction();
         $this->getMassactionBlock()->addItem('print_wb_label', array(
-            'label'=> Mage::helper('sales')->__('Print WB Labels'),
+            'label'=> Mage::helper('sr_upsship')->__('Print WB Labels'),
             'url'  => $this->getUrl('*/order/wbLabels'),
         ));
 
