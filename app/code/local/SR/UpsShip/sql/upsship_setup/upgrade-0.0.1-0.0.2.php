@@ -1,9 +1,10 @@
 <?php
 $this->startSetup();
 
-$model = Mage::getModel('adminhtml/email_template');
+$templateCode = 'New Order (UpsShip included)';
+$model = Mage::getModel('adminhtml/email_template')->load($templateCode, 'template_code');
 $data = array (
-    'template_code' => 'New Order (UpsShip included)',
+    'template_code' => $templateCode,
     'template_text' => '{{template config_path="design/email/header"}}
 {{inlinecss file="email-inline.css"}}
 
@@ -93,10 +94,10 @@ $data = array (
 );
 $model->setData($data)->save();
 
-
-$model = Mage::getModel('adminhtml/email_template');
+$templateCode = 'New Order for Guest (UpsShip included)';
+$model = Mage::getModel('adminhtml/email_template')->load($templateCode, 'template_code');
 $data = array (
-    'template_code' => 'New Order for Guest (UpsShip included)',
+    'template_code' => $templateCode,
     'template_text' => '{{template config_path="design/email/header"}}
 {{inlinecss file="email-inline.css"}}
 
