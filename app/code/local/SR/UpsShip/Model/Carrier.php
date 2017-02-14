@@ -40,7 +40,15 @@ class SR_UpsShip_Model_Carrier
         $rate->setCarrierTitle($this->getConfigData('title'));
         $rate->setMethod(self::UPS_SHIP_PICKUP_METHOD_CODE);
         $rate->setMethodTitle('PickUP Ship');
-        $rate->setPrice($this->getConfigData('price'));
+
+
+        $freeShippingLimit = (int)$this->getConfigData('free_shipping_limit');
+
+        $price = ($freeShippingLimit > 0 && $request->getPackageValueWithDiscount() >= $freeShippingLimit)  ? 0  : $this->getConfigData('price');
+
+        $rate->setPrice($this->getShippingPrice());
+
+
         $rate->setCost(0);
         $result->append($rate);
 
@@ -78,6 +86,7 @@ class SR_UpsShip_Model_Carrier
     {
         return 999;
     }
+
 
 
 }
