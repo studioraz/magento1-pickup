@@ -68,5 +68,16 @@ class SR_UpsShip_Model_Carrier
         return true;
     }
 
+    /**
+     *  Retrieve sort order of current carrier
+     *  Shipping line must be last one as the picker button is located at the additional block
+     *
+     * @return mixed
+     */
+    public function getSortOrder()
+    {
+        return 999;
+    }
+
 
 }

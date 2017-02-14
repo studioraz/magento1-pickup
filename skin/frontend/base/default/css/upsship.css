@@ -4,6 +4,7 @@
 
 .ups-pickups-48 {
     border: 1px solid #8ec840 !important;
+    box-sizing: border-box;
 }
 
 .ups-ship-additional.ups-invalid .ups-pickups-48 {
@@ -18,4 +19,5 @@
     color: #25408f;
     padding: 20px;
     float: right;
+    box-sizing: border-box;
 }
