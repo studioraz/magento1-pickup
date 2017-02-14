@@ -110,11 +110,9 @@
                 <active>1</active>
                 <sort_order>10</sort_order>
                 <model>sr_upsship/carrier</model>
-                <title>PickUPS Ship</title>
+                <title>PickUP Ship</title>
                 <price>10</price>
                 <sort_order>10</sort_order>
-                <sallowspecific>1</sallowspecific>
-                <specificcountry>IL</specificcountry>
             </upsship>
         </carriers>
     </default>

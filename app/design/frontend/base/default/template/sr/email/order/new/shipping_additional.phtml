@@ -1,9 +1,9 @@
 <?php /** @var $this SR_UpsShip_Block_Email_Order_New_ShippingAdditional */ ?>
 <?php if ($locationData = $this->getAdditionalInformation()): ?>
-    <td class="method-info">
-        <h6><?php echo $this->__('Pickup location address'); ?>:</h6>
-        <p><?php echo $locationData['title'] . ': ' . $locationData['city'] . ', ' . $locationData['street'] .
-                $locationData['zip']; ?></p>
-    </td>
+    <h6><?php echo Mage::helper('sr_upsship')->__('PickUP Location Information'); ?></h6>
+    <span style="font-weight: bold"><?php echo $locationData['iid'] ?></span><br/>
+    <?php echo $locationData['title'] ?><br/>
+    <?php echo $locationData['street'] ?>, <?php echo $locationData['city'] ?><br/>
+    <?php echo $locationData['zip'] ?><br/>
 <?php endif; ?>
 

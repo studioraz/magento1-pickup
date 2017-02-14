@@ -2,11 +2,12 @@
 <?php if ($this->canShow()): ?>
     <div class="entry-edit">
         <div class="entry-edit-head">
-            <h4 class="icon-head head-payment-method"><?php echo $this->__('PickUPS Location Information') ?></h4>
+            <h4 class="icon-head head-payment-method"><?php echo $this->__('PickUP Location Information') ?></h4>
         </div>
         <fieldset>
+            <div><strong><?php echo $this->getUpsLocationId(); ?></strong></div>
             <?php foreach ($this->getUpsLocationDetails() as $detailName => $detail): ?>
-                <div><?php echo $this->__($detailName) . ': ' . $detail; ?></div>
+                <div><?php echo $detail; ?></div>
             <?php endforeach; ?>
         </fieldset>
     </div>

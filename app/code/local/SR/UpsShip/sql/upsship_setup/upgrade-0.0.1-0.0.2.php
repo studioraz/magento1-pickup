@@ -1,7 +1,7 @@
 <?php
 $this->startSetup();
 
-$templateCode = 'New Order (UpsShip included)';
+$templateCode = 'New Order (with PickUP location information)';
 $model = Mage::getModel('adminhtml/email_template')->load($templateCode, 'template_code');
 $data = array (
     'template_code' => $templateCode,
@@ -70,13 +70,13 @@ $data = array (
                     <td class="method-info">
                         <h6>Shipping method:</h6>
                         <p>{{var order.shipping_description}}</p>
+                        {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/email/order/new/shipping_additional.phtml\' order=$order}}
                     </td>
                     {{/depend}}
                     <td class="method-info">
                         <h6>Payment method:</h6>
                         {{var payment_html}}
-                    </td>
-                    {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/email/order/new/shipping_additional.phtml\' order=$order}}
+                    </td>                    
                 </tr>
             </table>
         </td>
@@ -94,7 +94,7 @@ $data = array (
 );
 $model->setData($data)->save();
 
-$templateCode = 'New Order for Guest (UpsShip included)';
+$templateCode = 'New Order for Guest (with PickUp location information)';
 $model = Mage::getModel('adminhtml/email_template')->load($templateCode, 'template_code');
 $data = array (
     'template_code' => $templateCode,
@@ -163,13 +163,13 @@ $data = array (
                     <td class="method-info">
                         <h6>Shipping method:</h6>
                         <p>{{var order.shipping_description}}</p>
+                        {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/email/order/new/shipping_additional.phtml\' order=$order}}
                     </td>
                     {{/depend}}
                     <td class="method-info">
                         <h6>Payment method:</h6>
                         {{var payment_html}}
-                    </td>
-                    {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/email/order/new/shipping_additional.phtml\' order=$order}}
+                    </td>                    
                 </tr>
             </table>
         </td>

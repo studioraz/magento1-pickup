@@ -4,7 +4,7 @@
         <carriers>
             <groups>
                 <upsship translate="label">
-                    <label>PickUPS Ship</label>
+                    <label>PickUP Ship</label>
                     <sort_order>2</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>

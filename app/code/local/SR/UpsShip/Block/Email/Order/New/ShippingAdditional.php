@@ -18,12 +18,10 @@ class SR_UpsShip_Block_Email_Order_New_ShippingAdditional extends Mage_Core_Bloc
     public function getAdditionalInformation()
     {
         $order = $this->getOrder();
-        Mage::log($order->getId());
         if ($order->getIsVirtual()) {
             return;
         }
         $shippingAddress = $order->getShippingAddress();
-        Mage::log($shippingAddress->getData('shipping_additional_information'));
         if (!$shippingAddress->getData('shipping_additional_information')) {
             return;
         }
@@ -32,7 +30,6 @@ class SR_UpsShip_Block_Email_Order_New_ShippingAdditional extends Mage_Core_Bloc
         } catch (\Exception $e) {
             return;
         }
-        Mage::log($locationData);
         return $locationData;
     }
 }
