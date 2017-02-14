@@ -70,7 +70,7 @@ $data = array (
                     <td class="method-info">
                         <h6>Shipping method:</h6>
                         <p>{{var order.shipping_description}}</p>
-                        {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/email/order/new/shipping_additional.phtml\' order=$order}}
+                        {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/upshsip/email/order/new/shipping_additional.phtml\' order=$order}}
                     </td>
                     {{/depend}}
                     <td class="method-info">
@@ -163,7 +163,7 @@ $data = array (
                     <td class="method-info">
                         <h6>Shipping method:</h6>
                         <p>{{var order.shipping_description}}</p>
-                        {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/email/order/new/shipping_additional.phtml\' order=$order}}
+                        {{block type=\'sr_upsship/email_order_new_shippingAdditional\' area=\'frontend\' template=\'sr/upship/email/order/new/shipping_additional.phtml\' order=$order}}
                     </td>
                     {{/depend}}
                     <td class="method-info">
