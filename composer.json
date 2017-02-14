@@ -1,5 +1,5 @@
 {
-  "name": "studioraz/magento1-pickups",
+  "name": "studioraz/magento1-pickup",
   "type": "magento-module",
   "license": "OSL-3.0",
   "description": "FULL, FREE and SUPPORTED integration with PickUP shipping services (Israel only) for Magento.",
