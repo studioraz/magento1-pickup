@@ -46,7 +46,7 @@ class SR_UpsShip_Model_Carrier
 
         $price = ($freeShippingLimit > 0 && $request->getPackageValueWithDiscount() >= $freeShippingLimit)  ? 0  : $this->getConfigData('price');
 
-        $rate->setPrice($this->getShippingPrice());
+        $rate->setPrice($price);
 
 
         $rate->setCost(0);
