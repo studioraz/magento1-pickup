@@ -89,7 +89,7 @@ class SR_UpsShip_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Act
             $data['Orders'][$i]['PKP']= $order->getShippingAdditionalInformation();
             $data['Orders'][$i]['OrderID']= $order->getIncrementId();
             $data['Orders'][$i]['Weight'] = (float)$order->getSumWeight();
-            $data['Orders'][$i]['NumberOfPackages'] = (int)$order->getSumQty();
+            $data['Orders'][$i]['NumberOfPackages'] = 1;
             $i++;
         }
 
