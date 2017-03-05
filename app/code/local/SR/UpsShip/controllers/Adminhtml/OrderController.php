@@ -52,6 +52,14 @@ class SR_UpsShip_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Act
                     "(main_table.entity_id = {$billingTableAliasName}.parent_id" .
                     " AND {$billingTableAliasName}.address_type = 'billing')"
                 );
+            $shippingTableAliasName = 'shipping_o_a';
+            $this->collection->getSelect()
+                ->joinLeft(
+                    array($shippingTableAliasName => $this->collection->getTable('sales/order_address')),
+                    "(main_table.entity_id = {$shippingTableAliasName}.parent_id" .
+                    " AND {$shippingTableAliasName}.address_type = 'shipping')",
+                    array('pkp' => 'shipping_additional_information')
+                );
             $itemsTableAliasName = 'o_i';
             $this->collection->getSelect()
                 ->joinLeft(
@@ -78,6 +86,7 @@ class SR_UpsShip_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Act
     {
         $data = array();
         $i = 1;
+        /** @var Mage_Sales_Model_Order $order */
         foreach ($this->collection as $order) {
             $data['Orders'][$i]['ConsigneeAddress']['City'] = $order->getCity();
             $data['Orders'][$i]['ConsigneeAddress']['ContactName'] = $order->getFirstname() . ' ' . $order->getLastname();
@@ -86,7 +95,7 @@ class SR_UpsShip_Adminhtml_OrderController extends Mage_Adminhtml_Controller_Act
             $data['Orders'][$i]['ConsigneeAddress']['Street'] = $order->getStreet();
             $data['Orders'][$i]['ConsigneeAddress']['LocationDescription'] = ''; //@todo what is this?
             $data['Orders'][$i]['ConsigneeAddress']['Email'] = $order->getEmail();
-            $data['Orders'][$i]['PKP']= $order->getShippingAdditionalInformation();
+            $data['Orders'][$i]['PKP']= $order->getPkp();
             $data['Orders'][$i]['OrderID']= $order->getIncrementId();
             $data['Orders'][$i]['Weight'] = (float)$order->getSumWeight();
             $data['Orders'][$i]['NumberOfPackages'] = 1;
