@@ -8,7 +8,10 @@
     //<![CDATA[
     if (!window.upsShipLoaded) {
         var script = document.createElement('script');
-        script.src = "<?php echo Mage::getBaseUrl('js'); ?>sr/upsship/pickup.js";
+
+        //script.src = "<?php echo Mage::getBaseUrl('js'); ?>sr/upsship/pickup.js";
+        script.src = '<?php echo Mage::helper('sr_upsship')->getPickupLocationJsUrl(); ?>';
+
         jQuery('head').append(script);
         window.upsShipLoaded = true;
     }

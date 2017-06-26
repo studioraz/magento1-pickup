@@ -113,6 +113,7 @@
                 <title>PickUP Ship</title>
                 <price>10</price>
                 <sort_order>10</sort_order>
+                <pickup_location_type>sdk.all</pickup_location_type>
             </upsship>
         </carriers>
     </default>
