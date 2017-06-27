@@ -6,15 +6,15 @@ class SR_UpsShip_Model_System_Config_Source_Locationtype
     {
         return array(
             array(
-                'value' => 'sdk.all',
+                'value' => 'all',
                 'label' => Mage::helper('sr_upsship')->__('Stores & Lockers')
             ),
             array(
-                'value' => 'stores.sdk',
+                'value' => 'stores',
                 'label' => Mage::helper('sr_upsship')->__('Stores Only')
             ),
             array(
-                'value' => 'lockers.sdk',
+                'value' => 'lockers',
                 'label' => Mage::helper('sr_upsship')->__('Lockers Only')
             ),
         );
