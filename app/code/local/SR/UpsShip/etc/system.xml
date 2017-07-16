@@ -77,5 +77,83 @@
                 </upsship>
             </groups>
         </carriers>
+        <upsship>
+            <label>PickUP Ship Integration</label>
+            <tab>studioraz</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>20</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <is_live_mode>
+                            <label>Is Live Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <config_path>upsship/general/is_live_mode</config_path>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <validate>validate-no-empty</validate>
+                        </is_live_mode>
+                        <service_domain_prefix_live>
+                            <label>Live API URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>required-entry validate-url</frontend_class>
+                        </service_domain_prefix_live>
+                        <service_domain_prefix_live>
+                            <label>Sandbox API URL</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>required-entry validate-url</frontend_class>
+                        </service_domain_prefix_live>
+                        <customer_number>
+                            <label>Account Number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_class>required-entry validate-digits</frontend_class>
+                        </customer_number>
+                        <login>
+                            <label>Username</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>UPS email address</comment>
+                            <frontend_class>required-entry validate-email</frontend_class>
+                        </login>
+                        <password>
+                            <label>Password</label>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                        </password>
+                    </fields>
+                </general>
+            </groups>
+        </upsship>
     </sections>
 </config>

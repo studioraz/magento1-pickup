@@ -33,4 +33,49 @@ class SR_UpsShip_Model_Observer extends Varien_Event_Observer
                 ->save();
         }
     }
+
+    /**
+     * Assigns tracking number to the newly created shipment
+     */
+    public function saveTrackingNumbers($observer)
+    {
+        /** @var SR_UpsShip_Model_Carrier $carrier */
+        $carrier = Mage::getModel('sr_upsship/carrier');
+        /** @var SR_UpsShip_Model_Service_InsertPickupsShipment $service */
+        $service = Mage::getModel('sr_upsship/service_insertPickupsShipment');
+        /** @var Mage_Sales_Model_Order_Shipment $shipment */
+        $shipment = $observer->getEvent()->getShipment();
+        $order = $shipment->getOrder();
+        if ($order->getShippingMethod(true)->getCarrierCode() == $carrier->getCarrierCode()
+            && $order->getTracksCollection()->count() == 0
+        ) {
+            $trackingData = $service->setEntity($order)->execute();
+            if ($trackingData['error_code'] && $trackingData['error_message']) {
+                $error = sprintf('The service returned an error code "%s" with message "%s"',
+                    $trackingData['error_code'],
+                    $trackingData['error_message']
+                );
+                $this->_getAdminSession()->addError($error);
+                throw new Exception($error);
+            }
+            foreach ($trackingData['tracking_numbers'] as $trackingNumber) {
+                $shipment->addTrack(
+                    Mage::getModel('sales/order_shipment_track')
+                        ->setNumber($trackingNumber)
+                        ->setCarrierCode($carrier->getCarrierCode())
+                        ->setTitle($carrier->getConfigData('title'))
+                );
+            }
+        }
+    }
+
+    /**
+     * Retrieve session model
+     *
+     * @return Mage_Adminhtml_Model_Session
+     */
+    protected function _getAdminSession()
+    {
+        return Mage::getSingleton('adminhtml/session');
+    }
 }
