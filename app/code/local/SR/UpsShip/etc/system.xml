@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+    <tabs>
+        <studioraz translate="label">
+            <label>Studio Raz</label>
+            <sort_order>160</sort_order>
+        </studioraz>
+    </tabs>
     <sections>
         <carriers>
             <groups>
@@ -114,7 +120,7 @@
                             <show_in_store>1</show_in_store>
                             <frontend_class>required-entry validate-url</frontend_class>
                         </service_domain_prefix_live>
-                        <service_domain_prefix_live>
+                        <service_domain_prefix_dev>
                             <label>Sandbox API URL</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>1</sort_order>
@@ -122,7 +128,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <frontend_class>required-entry validate-url</frontend_class>
-                        </service_domain_prefix_live>
+                        </service_domain_prefix_dev>
                         <customer_number>
                             <label>Account Number</label>
                             <frontend_type>text</frontend_type>

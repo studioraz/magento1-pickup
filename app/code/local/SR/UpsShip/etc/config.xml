@@ -74,6 +74,26 @@
                 </Mage_Catalog>
             </modules>
         </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <upsship>
+                                            <title>ickUP Ship Integration</title>
+                                        </upsship>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
     </adminhtml>
     <frontend>
         <layout>
@@ -133,7 +153,7 @@
                 <service_domain_prefix_dev>https://beta.ship.co.il/</service_domain_prefix_dev>
                 <!--<login></login>-->
                 <!--<customer_number></customer_number>-->
-                <password backend_model="adminhtml/system_config_backend_encrypted" />
+                <password backend_model="adminhtml/system_config_backend_encrypted"/>
             </general>
         </upsship>
     </default>
