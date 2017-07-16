@@ -50,6 +50,11 @@ class SR_UpsShip_Model_Observer extends Varien_Event_Observer
             && $order->getTracksCollection()->count() == 0
         ) {
             $trackingData = $service->setEntity($order)->execute();
+            if (!$trackingData) {
+                $error = 'Some error has occurred. Please check if your login details are correct.';
+                $this->_getAdminSession()->addError($error);
+                throw new Exception($error);
+            }
             if ($trackingData['error_code'] && $trackingData['error_message']) {
                 $error = sprintf('The service returned an error code "%s" with message "%s"',
                     $trackingData['error_code'],

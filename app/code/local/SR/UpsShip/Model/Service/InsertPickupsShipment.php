@@ -40,7 +40,7 @@ class SR_UpsShip_Model_Service_InsertPickupsShipment extends SR_UpsShip_Model_Se
                     'StreetName' => $order->getShippingAddress()->getStreet(0),
                     'Phone1' => $order->getShippingAddress()->getTelephone()
                 ),
-                'PickupPointID' => $this->getEntity()->getShippingUpsPickupId(),
+                'PickupPointID' => $order->getShippingAddress()->getShippingUpsPickupId(),
                 'Reference1' => $this->getEntity()->getIncrementId(),
                 'UseDefaultShipperAddress' => 'true',
                 'Weight' => $this->getEntity()->getWeight()
@@ -73,13 +73,13 @@ class SR_UpsShip_Model_Service_InsertPickupsShipment extends SR_UpsShip_Model_Se
             $errorMessage = sprintf('Some error has occurred during the %s request.', $this->_getRequestMethodName());
         }
 
-        $data = [
+        $data = array(
             'tracking_numbers' => isset($response->TrackingNumber)
                 ? array($response->TrackingNumber)
                 : array(),
             'error_message' =>  $errorMessage,
             'error_code' => $errorCode
-        ];
+        );
 
         return $data;
     }
