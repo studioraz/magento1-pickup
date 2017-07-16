@@ -3,7 +3,7 @@
     <tabs>
         <studioraz translate="label" module="sr_upsship">
             <label>Studio Raz</label>
-            <sort_order>100</sort_order>
+            <sort_order>180</sort_order>
         </studioraz>
     </tabs>
     <sections>
