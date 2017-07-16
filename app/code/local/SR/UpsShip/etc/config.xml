@@ -74,26 +74,6 @@
                 </Mage_Catalog>
             </modules>
         </translate>
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <system>
-                            <children>
-                                <config>
-                                    <children>
-                                        <upsship>
-                                            <title>ickUP Ship Integration</title>
-                                        </upsship>
-                                    </children>
-                                </config>
-                            </children>
-                        </system>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
-
     </adminhtml>
     <frontend>
         <layout>
@@ -143,7 +123,7 @@
                 <title>PickUP Ship</title>
                 <price>10</price>
                 <sort_order>10</sort_order>
-                <pickup_location_type>sdk.all</pickup_location_type>
+                <pickup_location_type>all</pickup_location_type>
             </upsship>
         </carriers>
         <upsship>
