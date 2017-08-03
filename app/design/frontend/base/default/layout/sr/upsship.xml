@@ -19,4 +19,97 @@
             <action method="setDontDisplayContainer"><param>1</param></action>
         </block>
     </checkout_onepage_additional>
+
+    <onestepcheckout_index_index>
+        <reference name="head">
+            <action method="removeItem"><type>js</type><name>magestore/onestepcheckout.js</name></action>
+            <action method="addJs">
+                <script>sr/upsship/onestepcheckout.js</script>
+            </action>
+        </reference>
+    </onestepcheckout_index_index>
+
+    <onestepcheckout_index_index_flat_20columns>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/upsship.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/flat/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_index_index_flat_20columns>
+
+    <onestepcheckout_index_index_flat_25columns>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/upsship.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/flat/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_index_index_flat_25columns>
+
+    <onestepcheckout_index_index_flat_30columns>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/upsship.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/flatnew/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_index_index_flat_30columns>
+
+    <onestepcheckout_index_index_material_20columns>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/upsship.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/material/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_index_index_material_20columns>
+
+    <onestepcheckout_index_index_material_25columns>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/upsship.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/material/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_index_index_material_25columns>
+
+    <onestepcheckout_index_index_material_30columns>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/upsship.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/material/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_index_index_material_30columns>
+
+    <onestepcheckout_shipping_payment_review_flat_20columns>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/flat/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_shipping_payment_review_flat_20columns>
+
+    <onestepcheckout_shipping_payment_review_material_20columns>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/material/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_shipping_payment_review_material_20columns>
+
+    <onestepcheckout_shipping_payment_review_flat_30columns>
+        <reference name="onestepcheckout_shipping_method">
+            <action method="setTemplate"><template>sr/upsship/onestepcheckout/flatnew/onestepcheckout/shipping_method.phtml</template></action>
+        </reference>
+    </onestepcheckout_shipping_payment_review_flat_30columns>
 </layout>

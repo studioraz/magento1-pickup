@@ -15,6 +15,11 @@
                     <sales_order_grid>SR_UpsShip_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
                 </rewrite>
             </adminhtml>
+            <onestepcheckout>
+                <rewrite>
+                    <style>SR_UpsShip_Block_Onestepcheckout_Style</style>
+                </rewrite>
+            </onestepcheckout>
         </blocks>
         <models>
             <sr_upsship>

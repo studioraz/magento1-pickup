@@ -1,0 +1,189 @@
+<?php
+/**
+ * Magestore
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Magestore
+ * @package     Magestore_Onestepcheckout
+ * @copyright   Copyright (c) 2017 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+?>
+<div id="ups-ship-additionallllll" class="ups-ship-additional clearfix" style="display: none">
+    <input type="hidden" class="validate-ups-pickup" name="shipping_ups_pickup_id" id="pickup-id"/>
+    <input type="hidden" name="shipping_additional_information" id="shipping-additional"/>
+    <div onclick="window.PickupsSDK.onClick(); return;" class="ups-pickups ups-pickups-48"></div>
+    <div id="ups-pickups-info" class="ups-pickups-info-2"></div>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    if (!window.upsShipLoaded) {
+        var script = document.createElement('script');
+        script.src = '<?php echo Mage::helper('sr_upsship')->getPickupLocationJsUrl(); ?>';
+
+        jQuery('head').append(script);
+        window.upsShipLoaded = true;
+    }
+
+    (function ($) {
+        window.UPSShip = {
+            code: 'upsship_pickup',
+            init: function () {
+                this.checkbox = $('#s_method_upsship_pickup');
+                this.block = $('#ups-ship-additional');
+                this.pickInfo = $("#ups-pickups-info");
+                this.picker = $('.ups-pickups-48');
+                this.invalidClass = 'ups-invalid';
+
+                var self = this;
+
+                $('input[name=shipping_method]').on('change', $.proxy(this.shippingMethodChanged, this));
+
+                this.bindPicker();
+
+
+                if (this.isActiveMethod()) {
+                    this.block.show();
+                }
+            },
+            shippingMethodChanged: function (e) {
+                this.block[this.isActiveMethod() ? 'show' : 'hide']();
+            },
+            isActiveMethod: function () {
+                return this.checkbox.is(':checked');
+            },
+            isValid: function () {
+                var isValid = $("input[name=shipping_ups_pickup_id]").val() != '' &&
+                    $("input[name=shipping_additional_information]").val() != '';
+                if (!isValid) {
+                    this.block.addClass(this.invalidClass);
+                }
+
+                return isValid;
+            },
+
+            setDefaults: function () {
+                var shippingCity = $('input[name="shipping[city]"]').val();
+                var shippingStreet = $('input[name="shipping[street][]"]').val();
+                var o = {
+                    location: {
+                        city: shippingCity ? shippingCity : $('input[name="billing[city]"]').val(),
+                        street: shippingStreet ? shippingStreet : $('input[name="billing[street][]"]').val()
+                    }
+                };
+                var json = JSON.stringify(o);
+                window.PickupsSDK.setDefaults(json);
+            },
+
+            bindPicker: function () {
+                var self = this;
+                $('body').on('pickups-before-open', this.setDefaults).on('pickups-after-choosen', function (e, data) {
+
+                    var pkps_location = e.originalEvent.detail;
+
+                    console.log("pickups-after-choosen catched event", pkps_location);
+
+                    $("input[name=shipping_ups_pickup_id]").val(pkps_location.iid);
+
+                    $("input[name=shipping_additional_information]").val(JSON.stringify(pkps_location));
+
+                    var html = pkps_location.title + " <strong>(" + pkps_location.iid + ")</strong>" +
+                        "<br />" + pkps_location.city + ", " + pkps_location.street + "" +
+                        "<br />" + pkps_location.zip;
+
+                    self.pickInfo.html(html).show();
+                    self.block.removeClass(self.invalidClass);
+                    save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+                });
+            }
+        };
+
+    })(jQuery);
+
+
+    window.UPSShip.init();
+
+
+    //]]>
+</script>
+<?php
+if (!$this->getQuote()->isVirtual()): ?>
+    <div class="giftmessage">
+        <?php if ($this->helper('giftmessage/message')) echo $this->helper('giftmessage/message')->getInline('onepage_checkout', $this->getQuote(), false) ?>
+        <?php if ($this->getLayout()->createBlock('enterprise_giftwrapping/checkout_options')) echo $this->getLayout()->createBlock('enterprise_giftwrapping/checkout_options')->setTemplate('giftwrapping/checkout/options.phtml')->tohtml(); ?>
+        <script type="text/javascript">
+            //<![CDATA[
+            if ($('allow_gift_options')) {
+                Event.observe('allow_gift_options', 'change', function () {
+                    var isGiftWrap = $('allow_gift_options').checked ? true : false;
+                    if (!isGiftWrap)
+                        save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+                });
+            }
+
+            if ($('allow_gift_options_for_order')) {
+                Event.observe('allow_gift_options_for_order', 'change', function () {
+                    var isGiftWrap = $('allow_gift_options_for_order').checked ? true : false;
+                    if (!isGiftWrap)
+                        save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+                });
+            }
+
+            if ($('allow_gift_options_for_items')) {
+                Event.observe('allow_gift_options_for_items', 'change', function () {
+                    var isGiftWrap = $('allow_gift_options_for_items').checked ? true : false;
+                    if (!isGiftWrap)
+                        save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+                });
+            }
+
+            $$('select[name^=giftwrapping]', 'input[name^=giftwrapping]').each(function (item) {
+                Event.observe(item, 'change', function () {
+                    save_shipping_method(shipping_method_url, update_shipping_payment, update_shipping_review);
+                });
+            });
+
+            //]]>
+        </script>
+    </div>
+    <style type="text/css">
+        .one-step-checkout .giftmessage .checkbox {
+            float: left;
+            margin: 5px !important;
+            clear: both;
+        }
+
+        .one-step-checkout #gift-message-whole-message, .one-step-checkout .input-text.giftmessage-area {
+            height: auto !important;
+            border: 0 none;
+            border-bottom: 1px solid silver;
+        }
+
+        .one-step-checkout .gift-messages-form, .one-step-checkout .gift-messages-form h4, .one-step-checkout .gift-messages-form p {
+            clear: both;
+        }
+
+        .one-step-checkout .gift-messages-form .form-list, .one-step-checkout .gift-messages-form .item .details {
+            padding-left: 0px !important;
+            margin-left: 0px !important
+        }
+
+        .one-step-checkout .gift-messages-form .wide {
+            display: flex;
+        }
+
+        .gift-message-form .inner-box > div.extra-options-container p {
+            clear: both;
+        }
+    </style>
+<?php endif; ?>
