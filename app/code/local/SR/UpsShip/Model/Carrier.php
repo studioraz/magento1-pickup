@@ -30,6 +30,43 @@ class SR_UpsShip_Model_Carrier
      */
     public function collectRates(Mage_Shipping_Model_Rate_Request $request)
     {
+        if ($this->getConfigData('use_tablerate')) {
+            $result = $this->_collectTableRates($request);
+        } else {
+            $result = $this->_collectFixedRates($request);
+        }
+
+        return $result;
+    }
+
+    protected function _collectTableRates($request)
+    {
+        $previousValue = Mage::getStoreConfigFlag('carriers/tablerate/active');
+        Mage::getConfig()->saveConfig('carriers/tablerate/active', 1, 'default');
+        /** @var Mage_Shipping_Model_Rate_Result $result */
+        $result = Mage::getModel('shipping/carrier_tablerate')->collectRates($request);
+        foreach ($result->getAllRates() as $rate) {
+            if ($rate->getCarrier()) {
+                $rate->setCarrier($this->_code);
+            }
+            if ($rate->getCarrierTitle()) {
+                $rate->setCarrierTitle($this->getConfigData('title'));
+            }
+            if ($rate->getMethod()) {
+                $rate->setMethod(self::UPS_SHIP_PICKUP_METHOD_CODE);
+            }
+            if ($rate->getMethodTitle()) {
+                $rate->setMethodTitle('PickUP Ship');
+            }
+            if ($rate->getPrice()) {
+                $rate->setPrice($rate->getPrice() - (float)$this->getConfigData('subtract_amount'));
+            }
+        }
+        Mage::getConfig()->saveConfig('carriers/tablerate/active', $previousValue, 'default');
+    }
+
+    protected function _collectFixedRates($request)
+    {
         /** @var Mage_Shipping_Model_Rate_Result $result */
         $result = Mage::getModel('shipping/rate_result');
 

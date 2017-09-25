@@ -139,6 +139,8 @@
                 <!--<login></login>-->
                 <!--<customer_number></customer_number>-->
                 <password backend_model="adminhtml/system_config_backend_encrypted"/>
+                <use_tablerate>0</use_tablerate>
+                <subtract_amount>3</subtract_amount>
             </general>
         </upsship>
     </default>

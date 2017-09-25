@@ -36,6 +36,7 @@
                         <price translate="label">
                             <label>Price</label>
                             <frontend_type>text</frontend_type>
+                            <depends><use_tablerate>0</use_tablerate></depends>
                             <sort_order>25</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
@@ -45,6 +46,7 @@
                             <label>Minimum for Free Shipping</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>26</sort_order>
+                            <depends><use_tablerate>0</use_tablerate></depends>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -79,6 +81,24 @@
                             <show_in_store>0</show_in_store>
                             <can_be_empty>1</can_be_empty>
                         </specificcountry>
+                        <use_tablerate translate="label">
+                            <label>Use Table Rates</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </use_tablerate>
+                        <subtract_amount translate="label">
+                            <label>Amount to be subtracted from table rates</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends><use_tablerate>1</use_tablerate></depends>
+                        </subtract_amount>
                     </fields>
                 </upsship>
             </groups>
