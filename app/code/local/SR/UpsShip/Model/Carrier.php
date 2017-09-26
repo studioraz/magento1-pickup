@@ -41,11 +41,11 @@ class SR_UpsShip_Model_Carrier
 
     protected function _collectTableRates($request)
     {
-        $previousValue = Mage::getStoreConfigFlag('carriers/tablerate/active');
-        Mage::getConfig()->saveConfig('carriers/tablerate/active', 1, 'default');
+        $previous = Mage::app()->getStore()->getConfig('carriers/tablerate/active');
+        Mage::app()->getStore()->setConfig('carriers/tablerate/active', 1);
         /** @var Mage_Shipping_Model_Rate_Result $result */
         $result = Mage::getModel('shipping/carrier_tablerate')->collectRates($request);
-        foreach ($result->getAllRates() as $rate) {
+        foreach ($result->getAllRates() as &$rate) {
             if ($rate->getCarrier()) {
                 $rate->setCarrier($this->_code);
             }
@@ -59,10 +59,13 @@ class SR_UpsShip_Model_Carrier
                 $rate->setMethodTitle('PickUP Ship');
             }
             if ($rate->getPrice()) {
-                $rate->setPrice($rate->getPrice() - (float)$this->getConfigData('subtract_amount'));
+                $price = $rate->getPrice() - (float)$this->getConfigData('subtract_amount');
+                $rate->setPrice($price >= 0 ? $price : 0);
             }
         }
-        Mage::getConfig()->saveConfig('carriers/tablerate/active', $previousValue, 'default');
+        Mage::app()->getStore()->setConfig('carriers/tablerate/active', $previous);
+
+        return $result;
     }
 
     protected function _collectFixedRates($request)
@@ -78,13 +81,11 @@ class SR_UpsShip_Model_Carrier
         $rate->setMethod(self::UPS_SHIP_PICKUP_METHOD_CODE);
         $rate->setMethodTitle('PickUP Ship');
 
-
         $freeShippingLimit = (int)$this->getConfigData('free_shipping_limit');
 
         $price = ($freeShippingLimit > 0 && $request->getPackageValueWithDiscount() >= $freeShippingLimit)  ? 0  : $this->getConfigData('price');
 
         $rate->setPrice($price);
-
 
         $rate->setCost(0);
         $result->append($rate);
