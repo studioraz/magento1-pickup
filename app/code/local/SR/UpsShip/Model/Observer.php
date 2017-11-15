@@ -39,6 +39,12 @@ class SR_UpsShip_Model_Observer extends Varien_Event_Observer
      */
     public function saveTrackingNumbers($observer)
     {
+
+        if (!Mage::getStoreConfigFlag('upsship/general/enabled')) {
+            return;
+        }
+
+
         /** @var SR_UpsShip_Model_Carrier $carrier */
         $carrier = Mage::getModel('sr_upsship/carrier');
         /** @var SR_UpsShip_Model_Service_InsertPickupsShipment $service */
