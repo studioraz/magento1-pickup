@@ -112,4 +112,17 @@
             <action method="setTemplate"><template>sr/upsship/onestepcheckout/flatnew/onestepcheckout/shipping_method.phtml</template></action>
         </reference>
     </onestepcheckout_shipping_payment_review_flat_30columns>
+
+    <!-- start: Compatibility with Amasty_Scheckout (Amasty Single Checkout) -->
+    <amscheckout_handle>
+        <reference name="head">
+            <action method="removeItem"><type>js</type><name>magestore/onestepcheckout.js</name></action>
+            <action method="addJs"><script>sr/upsship/onestepcheckout.js</script></action>
+        </reference>
+        <reference name="checkout.onepage.shipping_method.additional">
+            <action method="setTemplate"><template>sr/upsship/checkout/onepage/shipping_method/additional.phtml</template></action>
+            <action method="setDontDisplayContainer"><param>0</param></action>
+        </reference>
+    </amscheckout_handle>
+    <!-- end: Compatibility with Amasty_Scheckout -->
 </layout>
