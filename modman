@@ -13,3 +13,4 @@ app/etc/modules/SR_UpsShip.xml                                                  
 app/locale/en_US/SR_UpsShip.csv                                                         app/locale/en_US/SR_UpsShip.csv
 app/locale/he_IL/SR_UpsShip.csv                                                         app/locale/he_IL/SR_UpsShip.csv
 
+js/sr/upsship/onestepcheckout.js                                                         js/sr/upsship/onestepcheckout.js
