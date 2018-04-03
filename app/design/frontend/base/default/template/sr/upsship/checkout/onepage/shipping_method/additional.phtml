@@ -35,16 +35,31 @@
                     this.block.show();
                 }
 
-                // steal opcheckout.js function to validate
-                var save = shippingMethod.save;
+                // steal checkout validation function
 
-                shippingMethod.save = function () {
-                    if (self.isActiveMethod() && !self.isValid()) {
-                        alert('<?php echo $this->__('Please choose a pickup location');?>');
-                        return false;
+                // in case Amasty Single Checkout is active
+                if ($.isFunction(completeCheckout)) {
+                    var save = completeCheckout;
+                    completeCheckout = function () {
+                        if (!self.isValid()) {
+                            alert('<?php echo $this->__('Please choose a pickup location');?>');
+                            return false;
+                        }
+                        return save.apply(this, arguments);
                     };
-                    return save.apply(this, arguments);
                 }
+                else {
+                    // native shipping Class save function
+                    var save = shippingMethod.save;
+                    shippingMethod.save = function () {
+                        if (!self.isValid()) {
+                            alert('<?php echo $this->__('Please choose a pickup location');?>');
+                            return false;
+                        }
+                        return save.apply(this, arguments);
+                    };
+                }
+
             },
             shippingMethodChanged: function (e) {
                 this.block[this.isActiveMethod() ? 'show' : 'hide']();
@@ -53,6 +68,10 @@
                 return this.checkbox.is(':checked');
             },
             isValid: function () {
+                if (!this.isActiveMethod()) {
+                    return true;
+                }
+
                 var isValid = $("input[name=shipping_ups_pickup_id]").val() != '' &&
                     $("input[name=shipping_additional_information]").val() != '';
                 if (!isValid) {
