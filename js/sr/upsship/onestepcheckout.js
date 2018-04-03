@@ -290,10 +290,6 @@ function get_shipping_data(parameters) {
     }
 }
 
-function showLoading() {
-
-}
-
 function save_address_information(save_address_url, update_address_shipping, update_address_payment, update_address_review, notValidateForm) {
     var form = $('one-step-checkout-form');
     var shipping_method = $RF(form, 'shipping_method');
