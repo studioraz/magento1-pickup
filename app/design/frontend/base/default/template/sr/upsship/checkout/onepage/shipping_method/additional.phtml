@@ -84,10 +84,16 @@
 
                 var self = this;
                 $('body').on('pickups-before-open', function () {
+                    var city = $.trim($('input[name="shipping[city]"]').val()) != '' ? $('input[name="shipping[city]"]').val()
+                        : $('input[name="billing[city]"]').val();
+
+                    var street = $.trim($('input[name="shipping[street][]"]').val()) != '' ? $('input[name="shipping[street][]"]').val()
+                        : $('input[name="billing[street][]"]').val();
+
                     var o = {
                         location: {
-                            city: $('input[name="shipping[city]"]').val(),
-                            street: $('input[name="shipping[street][]"]').val()
+                            city: city,
+                            street: street
                         }
                     };
                     var json = JSON.stringify(o);
